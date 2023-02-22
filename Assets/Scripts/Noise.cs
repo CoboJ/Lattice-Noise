@@ -5,7 +5,7 @@ using Unity.Mathematics;
 
 using static Unity.Mathematics.math;
 
-public static class Noise
+public static partial class Noise
 {
     public interface INoise {
         float4 GetNoise4 (float4x3 positions, SmallXXHash4 hash);

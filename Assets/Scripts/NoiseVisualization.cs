@@ -3,6 +3,7 @@ using Unity.Jobs;
 using Unity.Mathematics;
 using UnityEngine;
 
+using static Noise;
 public class NoiseVisualization : Visualization
 {
     static int noiseId = Shader.PropertyToID("_Noise");
@@ -40,7 +41,9 @@ public class NoiseVisualization : Visualization
 
     protected override void UpdateVisualization(NativeArray<float3x4> positions, int resolution, JobHandle handle) 
     {
-        handle.Complete();
+        Job<Lattice1D>.ScheduleParallel(
+            positions, noise, seed, domain, resolution, handle
+        ).Complete();
         noiseBuffer.SetData(noise.Reinterpret<float>(4 * 4));
     }
 }
