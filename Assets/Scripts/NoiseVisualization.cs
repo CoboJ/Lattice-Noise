@@ -12,13 +12,6 @@ public class NoiseVisualization : Visualization
     [SerializeField] SpaceTRS domain = new SpaceTRS {
         scale = 8f
     };
-    [SerializeField] Shape shape;
-    [SerializeField, Range(0.1f, 10f)] float instanceScale = 2f;
-    [SerializeField] Mesh instanceMesh;
-    [SerializeField] Material material;
-    [SerializeField, Range(1, 512)]int resolution = 16;
-	[SerializeField, Range(-0.5f, 0.5f)]float displacement = 0.1f;
-
     
     NativeArray<float4> noise;
     ComputeBuffer noiseBuffer;
