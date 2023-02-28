@@ -6,9 +6,16 @@ using UnityEngine;
 using static Noise;
 public class NoiseVisualization : Visualization
 {
+    static ScheduleDelegate[] noiseJob = {
+        Job<Lattice1D>.ScheduleParallel,
+        Job<Lattice2D>.ScheduleParallel,
+        Job<Lattice3D>.ScheduleParallel
+    };
+
     static int noiseId = Shader.PropertyToID("_Noise");
 
     [SerializeField] int seed;
+    [SerializeField, Range(1, 3)] int dimensions = 3;
     [SerializeField] SpaceTRS domain = new SpaceTRS {
         scale = 8f
     };
@@ -34,7 +41,7 @@ public class NoiseVisualization : Visualization
 
     protected override void UpdateVisualization(NativeArray<float3x4> positions, int resolution, JobHandle handle) 
     {
-        Job<Lattice2D>.ScheduleParallel(
+        noiseJob[dimensions - 1](
             positions, noise, seed, domain, resolution, handle
         ).Complete();
         noiseBuffer.SetData(noise.Reinterpret<float>(4 * 4));
