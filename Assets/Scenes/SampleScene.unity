@@ -167,13 +167,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59267feed1a014aa29db32ab14e1686c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shape: 0
+  shape: 1
   instanceScale: 2
   instanceMesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
   material: {fileID: 2100000, guid: ec8f3f4fe7bac4a8ebe36786e16c3f62, type: 2}
   resolution: 16
   displacement: 0.1
   seed: 0
+  dimensions: 3
   domain:
     translation:
       x: 0
